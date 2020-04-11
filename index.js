@@ -14,11 +14,9 @@ let client = new MongoClient(uri, {
   useUnifiedTopology: true,
 });
 
-app.get("https://doctorback.herokuapp.com/", (req, res) =>
-  res.send("Welcome to Doctors Portal  Backed")
-);
+app.get("/", (req, res) => res.send("Welcome to Doctors Portal  Backed"));
 
-app.get("https://doctorback.herokuapp.com/appointments", (req, res) => {
+app.get("/appointments", (req, res) => {
   client = new MongoClient(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
