@@ -14,9 +14,11 @@ let client = new MongoClient(uri, {
   useUnifiedTopology: true,
 });
 
-app.get("/", (req, res) => res.send("Welcome to Doctors Portal  Backed"));
+app.get("https://doctor-backend.herokuapp.com/", (req, res) =>
+  res.send("Welcome to Doctors Portal  Backed")
+);
 
-app.get("/appointments", (req, res) => {
+app.get("https://doctor-backend.herokuapp.com/appointments", (req, res) => {
   client = new MongoClient(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -30,23 +32,26 @@ app.get("/appointments", (req, res) => {
   client.close();
 });
 
-app.get("/bookedAppointments", (req, res) => {
-  client = new MongoClient(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-  client.connect((conErr) => {
-    const collection = client
-      .db("doctorsPortal")
-      .collection("bookedAppointments");
-    collection.find().toArray((err, documents) => {
-      err ? res.status(500).send(err) : res.send(documents);
+app.get(
+  "https://doctor-backend.herokuapp.com/bookedAppointments",
+  (req, res) => {
+    client = new MongoClient(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
     });
-  });
-  client.close();
-});
+    client.connect((conErr) => {
+      const collection = client
+        .db("doctorsPortal")
+        .collection("bookedAppointments");
+      collection.find().toArray((err, documents) => {
+        err ? res.status(500).send(err) : res.send(documents);
+      });
+    });
+    client.close();
+  }
+);
 
-app.post("/makeBooking", (req, res) => {
+app.post("https://doctor-backend.herokuapp.com/makeBooking", (req, res) => {
   const data = req.body;
   console.log(data);
   client = new MongoClient(uri, {
