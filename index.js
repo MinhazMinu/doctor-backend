@@ -30,7 +30,7 @@ app.get("/appointments", (req, res) => {
   client.close();
 });
 
-app.get("https://doctorback.herokuapp.com/bookedAppointments", (req, res) => {
+app.get("/bookedAppointments", (req, res) => {
   client = new MongoClient(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -46,7 +46,7 @@ app.get("https://doctorback.herokuapp.com/bookedAppointments", (req, res) => {
   client.close();
 });
 
-app.post("https://doctorback.herokuapp.com//makeBooking", (req, res) => {
+app.post("/makeBooking", (req, res) => {
   const data = req.body;
   console.log(data);
   client = new MongoClient(uri, {
